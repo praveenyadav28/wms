@@ -8,7 +8,7 @@ import 'package:wms_mst/components/api.dart';
 import 'package:wms_mst/components/prefences.dart';
 import 'package:wms_mst/components/showprospect.dart';
 import 'package:wms_mst/components/sidemenu.dart';
-import 'package:wms_mst/ui/home/drawer.dart/utils/excel.dart';
+import 'package:wms_mst/ui/home/drawer/utils/excel.dart';
 import 'package:wms_mst/utils/colors.dart';
 import 'package:wms_mst/utils/mediaquery.dart';
 

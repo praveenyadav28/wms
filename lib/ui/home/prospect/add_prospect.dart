@@ -1885,7 +1885,7 @@ class _ProspectScreenState extends State<ProspectScreen> {
         "EnquiryStatus": 105,
         "Last_Remark": _lastRemarkController.text.toString(),
         "LastContact_Date": DateFormat('yyyy/MM/dd').format(DateTime.now()),
-        "a": '',
+        "a": selectedState?.item ?? "",
         "b": '',
         'c': "",
       },

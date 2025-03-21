@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wms_mst/components/prefences.dart';
 import 'package:wms_mst/ui/home/dashboard/dashboard.dart';
-import 'package:wms_mst/ui/home/drawer.dart/easy_notes/easynotes.dart';
-import 'package:wms_mst/ui/home/drawer.dart/policy.dart';
-import 'package:wms_mst/ui/home/drawer.dart/report.dart';
+import 'package:wms_mst/ui/home/drawer/easy_notes/easynotes.dart';
+import 'package:wms_mst/ui/home/drawer/invoice.dart';
+import 'package:wms_mst/ui/home/drawer/policy.dart';
+import 'package:wms_mst/ui/home/drawer/report.dart';
 import 'package:wms_mst/ui/home/prospect/allprospect.dart';
 import 'package:wms_mst/ui/home/staff/staff_list.dart';
 import 'package:wms_mst/ui/onboarding/login.dart';
@@ -84,6 +85,14 @@ class SideMenu extends StatelessWidget {
             //     ? Container()
             //     : DrawerListtile(
             //       onTap: () {
+            //         pushNdRemove(Invoice());
+            //       },
+            //       title: "Invoice",
+            //     ),
+            // Preference.getString(PrefKeys.userType) == "Staff"
+            //     ? Container()
+            //     : DrawerListtile(
+            //       onTap: () {
             //         // pushNdRemove(
             //         //   const MyAccount(),
             //         // );
@@ -105,13 +114,17 @@ class SideMenu extends StatelessWidget {
                   },
                   title: "Our Staff",
                 ),
-            DrawerListtile(onTap: () {}, title: "Software Details"),
-            DrawerListtile(
-              onTap: () {
-                pushNdRemove(CompanyPolicy());
-              },
-              title: "Company Policy",
-            ),
+            Preference.getString(PrefKeys.userType) != "Staff"
+                ? Container()
+                : DrawerListtile(onTap: () {}, title: "Software Details"),
+            Preference.getString(PrefKeys.userType) != "Staff"
+                ? Container()
+                : DrawerListtile(
+                  onTap: () {
+                    pushNdRemove(CompanyPolicy());
+                  },
+                  title: "Company Policy",
+                ),
 
             DrawerListtile(
               onTap: () {

@@ -19,7 +19,7 @@ import 'package:wms_mst/ui/home/dashboard/filterview/customer_status.dart';
 import 'package:wms_mst/ui/home/dashboard/filterview/priority.dart';
 import 'package:wms_mst/ui/home/dashboard/filterview/productview.dart';
 import 'package:wms_mst/ui/home/dashboard/search_prospect.dart';
-import 'package:wms_mst/ui/home/drawer.dart/easy_notes/notes.dart';
+import 'package:wms_mst/ui/home/drawer/easy_notes/notes.dart';
 import 'package:wms_mst/ui/home/prospect/add_prospect.dart';
 import 'package:wms_mst/utils/button.dart';
 import 'package:wms_mst/utils/colors.dart';
@@ -76,7 +76,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<Map<String, dynamic>> reminders = [];
   List<Map<String, dynamic>> todayreminders = [];
   Timer? _timer;
-  List<Note> _notes = [];
+  // List<Note> _notes = [];
 
   @override
   void initState() {
@@ -89,18 +89,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     getallprospactGrid().then((value) => setState(() {}));
     customerTypeData();
     productData();
-    _loadNotes();
     super.initState();
-  }
-
-  void _loadNotes() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String>? notesString = prefs.getStringList('notes');
-    if (notesString != null) {
-      setState(() {
-        _notes = notesString.map((e) => Note.fromJson(jsonDecode(e))).toList();
-      });
-    }
   }
 
   Future<void> _loadReminders() async {
@@ -269,31 +258,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
     dataList = [
       {
         "icon":
-            "https://github.com/praveenyadav28/wms-images/blob/main/icon/17806297%201.png?raw=true",
+            "https://raw.githubusercontent.com/praveenyadav28/wms-images/refs/heads/main/icon/17806297%201.png",
         "title": "Enquery Punched Today",
         "users": "$punchedToday",
       },
       {
         "icon":
-            "https://github.com/praveenyadav28/wms-images/blob/main/icon/17806420%201.png?raw=true",
+            "https://raw.githubusercontent.com/praveenyadav28/wms-images/refs/heads/main/icon/17806420%201.png",
         "title": "Tomorrow’s Follow-up",
         "users": "$folowupTomorrow",
       },
       {
         "icon":
-            "https://github.com/praveenyadav28/wms-images/blob/main/icon/17806211%201.png?raw=true",
+            "https://raw.githubusercontent.com/praveenyadav28/wms-images/refs/heads/main/icon/17806211%201.png",
         "title": "Today’s Follow-up",
         "users": "$followupToday",
       },
       {
         "icon":
-            "https://github.com/praveenyadav28/wms-images/blob/main/icon/17806386%201.png?raw=true",
+            "https://raw.githubusercontent.com/praveenyadav28/wms-images/refs/heads/main/icon/17806386%201.png",
         "title": "Weekly Lead",
         "users": "$weeklyLead",
       },
       {
         "icon":
-            "https://github.com/praveenyadav28/wms-images/blob/main/icon/17806281%201.png?raw=true",
+            "https://raw.githubusercontent.com/praveenyadav28/wms-images/refs/heads/main/icon/17806281%201.png",
         "title": "Today’s Demo ",
         "users": "$demoToday",
       },
@@ -664,262 +653,239 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   ),
                                   child: Column(
                                     children: [
-                                      Row(
-                                        children: [
-                                          Expanded(child: Container()),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Center(
-                                              child: Text(
-                                                "Your Notes",
-                                                style: textStyles.sarifProText(
-                                                  16,
-                                                  FontWeight.w900,
-                                                  AppColor.primary,
-                                                ),
-                                              ),
-                                            ),
+                                      Center(
+                                        child: Text(
+                                          "Your Notes",
+                                          style: textStyles.sarifProText(
+                                            16,
+                                            FontWeight.w900,
+                                            AppColor.primary,
                                           ),
-                                          Expanded(
-                                            child: IconButton(
-                                              // icon: Image.asset(
-                                              //   "assets/Filters.png",
-                                              // ),
-                                              icon: Icon(Icons.add),
-                                              onPressed: () async {
-                                                var somedata = await pushTo(
-                                                  NotesScreen(),
-                                                );
-                                                if (somedata != null) {
-                                                  _loadNotes();
-                                                }
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Divider(),
-                                      SizedBox(
-                                        width: Sizes.width * .63,
-                                        child: Wrap(
-                                          runSpacing: Sizes.height * .02,
-
-                                          alignment: WrapAlignment.spaceEvenly,
-                                          children: [
-                                            ...List.generate(_notes.length, (
-                                              index,
-                                            ) {
-                                              return SizedBox(
-                                                width:
-                                                    Sizes.width > 1000
-                                                        ? Sizes.width * .19
-                                                        : Sizes.width > 700
-                                                        ? Sizes.width * .3
-                                                        : Sizes.width * .5,
-
-                                                child: Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                    vertical: 4,
-                                                    horizontal: 8,
-                                                  ),
-
-                                                  decoration: BoxDecoration(
-                                                    color:
-                                                        _notes[index]
-                                                            .backgroundColor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                          12,
-                                                        ),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 2,
-                                                        color: AppColor.black
-                                                            .withValues(
-                                                              alpha: .2,
-                                                            ),
-                                                        offset: Offset(0, 2),
-                                                      ),
-                                                    ],
-                                                  ),
-
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      _notes[index].title
-                                                                  .trim()
-                                                                  .isEmpty &&
-                                                              _notes[index]
-                                                                  .title
-                                                                  .trim()
-                                                                  .isEmpty
-                                                          ? SizedBox(
-                                                            width: 0,
-                                                            height: 0,
-                                                          )
-                                                          : ListTile(
-                                                            contentPadding:
-                                                                EdgeInsets.zero,
-
-                                                            title: Text(
-                                                              _notes[index]
-                                                                  .title,
-                                                              style: textStyles
-                                                                  .sarifProText(
-                                                                    16,
-                                                                    FontWeight
-                                                                        .w600,
-                                                                    AppColor
-                                                                        .black,
-                                                                  ),
-                                                            ),
-
-                                                            subtitle: Text(
-                                                              _notes[index]
-                                                                  .content,
-                                                              style: textStyles
-                                                                  .sarifProText(
-                                                                    14,
-                                                                    FontWeight
-                                                                        .w500,
-                                                                    AppColor
-                                                                        .black,
-                                                                  ),
-                                                            ),
-                                                            trailing: IconButton(
-                                                              icon: Icon(
-                                                                Icons.delete,
-                                                                color:
-                                                                    AppColor
-                                                                        .red,
-                                                                size: 20,
-                                                              ),
-                                                              onPressed:
-                                                                  () =>
-                                                                      _deleteNote(
-                                                                        index,
-                                                                      ),
-                                                            ),
-                                                          ),
-
-                                                      if (_notes[index]
-                                                          .tasks
-                                                          .isNotEmpty) ...[
-                                                        ListTile(
-                                                          contentPadding:
-                                                              EdgeInsets.zero,
-                                                          title: Text(
-                                                            "Tasks:",
-                                                            style: textStyles
-                                                                .sarifProText(
-                                                                  14,
-                                                                  FontWeight
-                                                                      .w600,
-                                                                  AppColor
-                                                                      .primary,
-                                                                ),
-                                                          ),
-                                                          trailing:
-                                                              _notes[index]
-                                                                          .title
-                                                                          .trim()
-                                                                          .isEmpty &&
-                                                                      _notes[index]
-                                                                          .title
-                                                                          .trim()
-                                                                          .isEmpty
-                                                                  ? IconButton(
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      color:
-                                                                          AppColor
-                                                                              .red,
-                                                                    ),
-                                                                    onPressed:
-                                                                        () => _deleteNote(
-                                                                          index,
-                                                                        ),
-                                                                  )
-                                                                  : SizedBox(
-                                                                    width: 0,
-                                                                    height: 0,
-                                                                  ),
-                                                        ),
-
-                                                        Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          children: List.generate(
-                                                            _notes[index]
-                                                                .tasks
-                                                                .length,
-                                                            (taskIndex) {
-                                                              return CheckboxListTile(
-                                                                dense: true,
-                                                                contentPadding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                title: Text(
-                                                                  _notes[index]
-                                                                      .tasks[taskIndex]
-                                                                      .text,
-                                                                  style: textStyles
-                                                                      .sarifProText(
-                                                                        14,
-                                                                        FontWeight
-                                                                            .w500,
-                                                                        AppColor
-                                                                            .grey,
-                                                                      ),
-                                                                ),
-                                                                value:
-                                                                    _notes[index]
-                                                                        .tasks[taskIndex]
-                                                                        .isChecked,
-                                                                onChanged:
-                                                                    (
-                                                                      _,
-                                                                    ) => _toggleTask(
-                                                                      index,
-                                                                      taskIndex,
-                                                                    ),
-                                                              );
-                                                            },
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ],
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                            _notes.length % 3 == 2
-                                                ? Container(
-                                                  width:
-                                                      Sizes.width > 1000
-                                                          ? Sizes.width * .19
-                                                          : Sizes.width > 700
-                                                          ? Sizes.width * .3
-                                                          : Sizes.width * .5,
-                                                )
-                                                : _notes.length % 3 == 1
-                                                ? Container(
-                                                  width:
-                                                      Sizes.width > 1000
-                                                          ? Sizes.width * .38
-                                                          : Sizes.width > 700
-                                                          ? Sizes.width * .6
-                                                          : Sizes.width * 1,
-                                                )
-                                                : Container(width: 0),
-                                          ],
                                         ),
                                       ),
+
+                                      Divider(),
+                                      // SizedBox(
+                                      //   width: Sizes.width * .63,
+                                      //   child: Wrap(
+                                      //     runSpacing: Sizes.height * .02,
+
+                                      //     alignment: WrapAlignment.spaceEvenly,
+                                      //     children: [
+                                      //       ...List.generate(_notes.length, (
+                                      //         index,
+                                      //       ) {
+                                      //         return SizedBox(
+                                      //           width:
+                                      //               Sizes.width > 1000
+                                      //                   ? Sizes.width * .19
+                                      //                   : Sizes.width > 700
+                                      //                   ? Sizes.width * .3
+                                      //                   : Sizes.width * .5,
+
+                                      //           child: Container(
+                                      //             padding: EdgeInsets.symmetric(
+                                      //               vertical: 4,
+                                      //               horizontal: 8,
+                                      //             ),
+
+                                      //             decoration: BoxDecoration(
+                                      //               color:
+                                      //                   _notes[index]
+                                      //                       .backgroundColor,
+                                      //               borderRadius:
+                                      //                   BorderRadius.circular(
+                                      //                     12,
+                                      //                   ),
+                                      //               boxShadow: [
+                                      //                 BoxShadow(
+                                      //                   blurRadius: 2,
+                                      //                   color: AppColor.black
+                                      //                       .withValues(
+                                      //                         alpha: .2,
+                                      //                       ),
+                                      //                   offset: Offset(0, 2),
+                                      //                 ),
+                                      //               ],
+                                      //             ),
+
+                                      //             child: Column(
+                                      //               crossAxisAlignment:
+                                      //                   CrossAxisAlignment
+                                      //                       .start,
+                                      //               mainAxisSize:
+                                      //                   MainAxisSize.min,
+                                      //               children: [
+                                      //                 _notes[index].title
+                                      //                             .trim()
+                                      //                             .isEmpty &&
+                                      //                         _notes[index]
+                                      //                             .title
+                                      //                             .trim()
+                                      //                             .isEmpty
+                                      //                     ? SizedBox(
+                                      //                       width: 0,
+                                      //                       height: 0,
+                                      //                     )
+                                      //                     : ListTile(
+                                      //                       contentPadding:
+                                      //                           EdgeInsets.zero,
+
+                                      //                       title: Text(
+                                      //                         _notes[index]
+                                      //                             .title,
+                                      //                         style: textStyles
+                                      //                             .sarifProText(
+                                      //                               16,
+                                      //                               FontWeight
+                                      //                                   .w600,
+                                      //                               AppColor
+                                      //                                   .black,
+                                      //                             ),
+                                      //                       ),
+
+                                      //                       subtitle: Text(
+                                      //                         _notes[index]
+                                      //                             .content,
+                                      //                         style: textStyles
+                                      //                             .sarifProText(
+                                      //                               14,
+                                      //                               FontWeight
+                                      //                                   .w500,
+                                      //                               AppColor
+                                      //                                   .black,
+                                      //                             ),
+                                      //                       ),
+                                      //                       trailing: IconButton(
+                                      //                         icon: Icon(
+                                      //                           Icons.delete,
+                                      //                           color:
+                                      //                               AppColor
+                                      //                                   .red,
+                                      //                           size: 20,
+                                      //                         ),
+                                      //                         onPressed:
+                                      //                             () =>
+                                      //                                 _deleteNote(
+                                      //                                   index,
+                                      //                                 ),
+                                      //                       ),
+                                      //                     ),
+
+                                      //                 if (_notes[index]
+                                      //                     .tasks
+                                      //                     .isNotEmpty) ...[
+                                      //                   ListTile(
+                                      //                     contentPadding:
+                                      //                         EdgeInsets.zero,
+                                      //                     title: Text(
+                                      //                       "Tasks:",
+                                      //                       style: textStyles
+                                      //                           .sarifProText(
+                                      //                             14,
+                                      //                             FontWeight
+                                      //                                 .w600,
+                                      //                             AppColor
+                                      //                                 .primary,
+                                      //                           ),
+                                      //                     ),
+                                      //                     trailing:
+                                      //                         _notes[index]
+                                      //                                     .title
+                                      //                                     .trim()
+                                      //                                     .isEmpty &&
+                                      //                                 _notes[index]
+                                      //                                     .title
+                                      //                                     .trim()
+                                      //                                     .isEmpty
+                                      //                             ? IconButton(
+                                      //                               icon: Icon(
+                                      //                                 Icons
+                                      //                                     .delete,
+                                      //                                 color:
+                                      //                                     AppColor
+                                      //                                         .red,
+                                      //                               ),
+                                      //                               onPressed:
+                                      //                                   () => _deleteNote(
+                                      //                                     index,
+                                      //                                   ),
+                                      //                             )
+                                      //                             : SizedBox(
+                                      //                               width: 0,
+                                      //                               height: 0,
+                                      //                             ),
+                                      //                   ),
+
+                                      //                   Column(
+                                      //                     mainAxisSize:
+                                      //                         MainAxisSize.min,
+                                      //                     children: List.generate(
+                                      //                       _notes[index]
+                                      //                           .tasks
+                                      //                           .length,
+                                      //                       (taskIndex) {
+                                      //                         return CheckboxListTile(
+                                      //                           dense: true,
+                                      //                           contentPadding:
+                                      //                               EdgeInsets
+                                      //                                   .zero,
+                                      //                           title: Text(
+                                      //                             _notes[index]
+                                      //                                 .tasks[taskIndex]
+                                      //                                 .text,
+                                      //                             style: textStyles
+                                      //                                 .sarifProText(
+                                      //                                   14,
+                                      //                                   FontWeight
+                                      //                                       .w500,
+                                      //                                   AppColor
+                                      //                                       .grey,
+                                      //                                 ),
+                                      //                           ),
+                                      //                           value:
+                                      //                               _notes[index]
+                                      //                                   .tasks[taskIndex]
+                                      //                                   .isChecked,
+                                      //                           onChanged:
+                                      //                               (
+                                      //                                 _,
+                                      //                               ) => _toggleTask(
+                                      //                                 index,
+                                      //                                 taskIndex,
+                                      //                               ),
+                                      //                         );
+                                      //                       },
+                                      //                     ),
+                                      //                   ),
+                                      //                 ],
+                                      //               ],
+                                      //             ),
+                                      //           ),
+                                      //         );
+                                      //       }),
+                                      //       _notes.length % 3 == 2
+                                      //           ? Container(
+                                      //             width:
+                                      //                 Sizes.width > 1000
+                                      //                     ? Sizes.width * .19
+                                      //                     : Sizes.width > 700
+                                      //                     ? Sizes.width * .3
+                                      //                     : Sizes.width * .5,
+                                      //           )
+                                      //           : _notes.length % 3 == 1
+                                      //           ? Container(
+                                      //             width:
+                                      //                 Sizes.width > 1000
+                                      //                     ? Sizes.width * .38
+                                      //                     : Sizes.width > 700
+                                      //                     ? Sizes.width * .6
+                                      //                     : Sizes.width * 1,
+                                      //           )
+                                      //           : Container(width: 0),
+                                      //     ],
+                                      //   ),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -1728,27 +1694,5 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void dispose() {
     _timer?.cancel();
     super.dispose();
-  }
-
-  void _saveNotes() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> notesString =
-        _notes.map((e) => jsonEncode(e.toJson())).toList();
-    prefs.setStringList('notes', notesString);
-  }
-
-  void _deleteNote(int index) {
-    setState(() {
-      _notes.removeAt(index);
-    });
-    _saveNotes();
-  }
-
-  void _toggleTask(int noteIndex, int taskIndex) {
-    setState(() {
-      _notes[noteIndex].tasks[taskIndex].isChecked =
-          !_notes[noteIndex].tasks[taskIndex].isChecked;
-    });
-    _saveNotes();
   }
 }

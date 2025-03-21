@@ -80,35 +80,35 @@ class _AddQueriesState extends State<AddQueries>
             Tab(
               text: 'Enquery Punched Today',
               icon: Image.network(
-                "https://github.com/praveenyadav28/wms-images/blob/main/icon/17806297%201.png?raw=true",
+                "https://raw.githubusercontent.com/praveenyadav28/wms-images/refs/heads/main/icon/17806297%201.png",
                 height: 24,
               ),
             ),
             Tab(
               text: "Tomorrow’s Follow-up",
               icon: Image.network(
-                "https://github.com/praveenyadav28/wms-images/blob/main/icon/17806420%201.png?raw=true",
+                "https://raw.githubusercontent.com/praveenyadav28/wms-images/refs/heads/main/icon/17806420%201.png",
                 height: 24,
               ),
             ),
             Tab(
               text: "Today’s Follow-up",
               icon: Image.network(
-                "https://github.com/praveenyadav28/wms-images/blob/main/icon/17806211%201.png?raw=true",
+                "https://raw.githubusercontent.com/praveenyadav28/wms-images/refs/heads/main/icon/17806211%201.png",
                 height: 24,
               ),
             ),
             Tab(
               text: 'Weekly Lead',
               icon: Image.network(
-                "https://github.com/praveenyadav28/wms-images/blob/main/icon/17806386%201.png?raw=true",
+                "https://raw.githubusercontent.com/praveenyadav28/wms-images/refs/heads/main/icon/17806386%201.png",
                 height: 24,
               ),
             ),
             Tab(
               text: 'Today’s Demo ',
               icon: Image.network(
-                "https://github.com/praveenyadav28/wms-images/blob/main/icon/17806281%201.png?raw=true",
+                "https://raw.githubusercontent.com/praveenyadav28/wms-images/refs/heads/main/icon/17806281%201.png",
                 height: 24,
               ),
             ),

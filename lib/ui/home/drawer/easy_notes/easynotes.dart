@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wms_mst/components/sidemenu.dart';
-import 'package:wms_mst/ui/home/drawer.dart/easy_notes/notes.dart';
+import 'package:wms_mst/ui/home/drawer/easy_notes/notes.dart';
 import 'package:wms_mst/utils/colors.dart';
 import 'package:wms_mst/utils/mediaquery.dart';
 import 'package:wms_mst/utils/textstyle.dart';

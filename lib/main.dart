@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wms_mst/components/prefences.dart';
+import 'package:wms_mst/ui/home/drawer/qr_generate.dart';
+import 'package:wms_mst/ui/home/drawer/quotation.dart';
 import 'package:wms_mst/ui/onboarding/splash.dart';
 import 'package:wms_mst/utils/colors.dart';
 import 'package:wms_mst/utils/mediaquery.dart';

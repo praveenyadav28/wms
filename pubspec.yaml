@@ -50,6 +50,7 @@ dependencies:
   flutter_local_notifications: ^18.0.1
   audioplayers: ^6.2.0
   just_audio: ^0.9.46
+  qr_flutter: ^4.1.0
 
 dev_dependencies:
   flutter_test:
